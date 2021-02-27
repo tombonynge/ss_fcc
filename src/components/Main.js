@@ -12,13 +12,13 @@ const WidgetContainer = styled.div`
     padding: 2rem;
 `;
 
-const Main = ({ widgets }) => {
+const Main = ({ widgets, removeWidget }) => {
     return (
         <>
             <h1>Main Page</h1>
             <WidgetContainer>
                 {widgets.map((w) => (
-                    <Widget key={w.id} id={w.id} name={w.name} language={w.language} />
+                    <Widget key={w.id} id={w.id} name={w.name} language={w.language} removeWidget={removeWidget} />
                 ))}
             </WidgetContainer>
             <Link to={"/addwidget"} data-testid="add-widget-link">

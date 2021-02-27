@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
-    background: lightblue;
+    background: ghostwhite;
     padding: 2rem;
 `;
 
@@ -33,7 +33,7 @@ const Step2 = ({ updateStep }) => {
     const [error, setError] = useState("");
     const handleSubmit = (e) => {
         if (e.target.name.value === "") {
-            setError("Name must be at least one character, only uppercase or lowercase letters allowed.");
+            setError("*Name must be at least one character, only uppercase or lowercase letters allowed.");
         } else {
             updateStep("name", e.target.name.value);
         }
@@ -45,19 +45,20 @@ const Step2 = ({ updateStep }) => {
             <h1>Step 2</h1>
             <p>Please enter a name</p>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="name" placeholder="John Smith" pattern="^[a-zA-Z\s]+$" />
+                <input type="text" name="name" placeholder="John Smith" pattern="^[a-zA-Z\s]+$" data-testid="name-input" />
                 <button type="submit" data-testid="step2-btn">
                     Create Widget
                 </button>
             </form>
-            {error && <p>{error}</p>}
+            {error && <p style={{ color: "tomato" }}>{error}</p>}
         </>
     );
 };
 
-const AddWidget = () => {
+const AddWidget = ({ createWidget }) => {
     const [step, setStep] = useState(1);
     const [data, setData] = useState({ language: "", name: "" });
+    const history = useHistory();
 
     const updateStep = (type, val) => {
         const temp = data;
@@ -66,8 +67,9 @@ const AddWidget = () => {
         if (step === 1) {
             setStep(step + 1);
         } else {
-            console.log(data);
             //create widget and go back to main....
+            createWidget(data);
+            history.push("/");
         }
     };
 

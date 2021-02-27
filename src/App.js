@@ -13,15 +13,33 @@ const testWidgets = [
 
 function App() {
     const [widgets, setWidgets] = useState(testWidgets);
+
+    const createWidget = (data) => {
+        const temp = widgets;
+        data.id = widgets.length;
+        temp.push(data);
+        setWidgets(temp);
+    };
+
+    const removeWidget = (id) => {
+        let updatedWidgets = widgets.filter((w) => w.id !== id);
+        updatedWidgets = updatedWidgets.map((w, i) => {
+            w.id = i;
+            return w;
+        });
+        setWidgets(updatedWidgets);
+        console.log(updatedWidgets);
+    };
+
     return (
         <div className="App">
             <Router>
                 <Switch>
                     <Route exact path={"/"}>
-                        <Main widgets={widgets} />
+                        <Main widgets={widgets} removeWidget={removeWidget} />
                     </Route>
                     <Route path={"/addwidget"}>
-                        <AddWidget />
+                        <AddWidget createWidget={createWidget} />
                     </Route>
                 </Switch>
             </Router>
