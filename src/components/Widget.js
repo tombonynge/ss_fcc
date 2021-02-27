@@ -13,12 +13,12 @@ const Container = styled.div`
     box-shadow: 12px 11px 21px -6px rgba(0, 0, 0, 0.43);
 `;
 
-const Widget = ({ id, name, language, removeWidget }) => {
+const Widget = ({ id, name, language, checkDelete }) => {
     return (
         <Container id="widget-container">
             <p>Name: {name}</p>
             <p>Language: {language}</p>
-            <button onClick={() => removeWidget(id)}>Delete</button>
+            <button onClick={() => checkDelete(id)}>Delete</button>
         </Container>
     );
 };
