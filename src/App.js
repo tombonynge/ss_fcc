@@ -8,7 +8,7 @@ import "./App.css";
 
 const testWidgets = [
     { id: 0, name: "Sam Jones", language: "English" },
-    { id: 0, name: "Maria Pericas", language: "Spanish" },
+    { id: 1, name: "Maria Pericas", language: "Spanish" },
 ];
 
 function App() {

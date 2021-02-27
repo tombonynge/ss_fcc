@@ -17,8 +17,8 @@ const Main = ({ widgets }) => {
         <>
             <h1>Main Page</h1>
             <WidgetContainer>
-                {widgets.map((widget) => (
-                    <Widget id={widget.id} name={widget.name} language={widget.language} />
+                {widgets.map((w) => (
+                    <Widget key={w.id} id={w.id} name={w.name} language={w.language} />
                 ))}
             </WidgetContainer>
             <Link to={"/addwidget"} data-testid="add-widget-link">
