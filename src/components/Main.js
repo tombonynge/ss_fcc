@@ -14,6 +14,16 @@ const WidgetContainer = styled.div`
     padding: 2rem;
 `;
 
+const Btn = styled.div`
+    display: inline-block;
+    padding: 1em;
+    cursor: pointer;
+    background: lightgreen;
+    margin: 1em;
+    text-decoration: none;
+    color: black;
+`;
+
 const Main = ({ widgets, removeWidget }) => {
     const [showModal, setShowModal] = useState(false);
     const [idToDelete, setIdToDelete] = useState(null);
@@ -35,7 +45,6 @@ const Main = ({ widgets, removeWidget }) => {
 
     return (
         <>
-            {showModal && <Modal handleDelete={handleDelete} cancelDelete={cancelDelete} />}
             <h1>Main Page</h1>
             <WidgetContainer>
                 {widgets.length === 0 && <p>You currently have no widgets 😿. Why not create some?</p>}
@@ -43,9 +52,11 @@ const Main = ({ widgets, removeWidget }) => {
                     <Widget key={w.id} id={w.id} name={w.name} language={w.language} checkDelete={checkDelete} />
                 ))}
             </WidgetContainer>
+
             <Link to={"/addwidget"} data-testid="add-widget-link">
-                Add Widget
+                <Btn>Add Widget</Btn>
             </Link>
+            {showModal && <Modal handleDelete={handleDelete} cancelDelete={cancelDelete} />}
         </>
     );
 };
