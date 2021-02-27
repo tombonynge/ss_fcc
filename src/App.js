@@ -1,9 +1,23 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Main from "./components/Main";
+import AddWidget from "./components/AddWidget";
+
 import "./App.css";
 
 function App() {
     return (
         <div className="App">
-            <h1>Hello World</h1>
+            <Router>
+                <Switch>
+                    <Route exact path={"/"}>
+                        <Main />
+                    </Route>
+                    <Route path={"/addwidget"}>
+                        <AddWidget />
+                    </Route>
+                </Switch>
+            </Router>
         </div>
     );
 }
